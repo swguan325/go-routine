@@ -18,6 +18,7 @@ type authServiceImpl struct {
 }
 
 func NewAuthService(userRepo repo.UserRepo) AuthService {
+	// 指向 authServiceImpl 的指標
 	return &authServiceImpl{
 		userRepo: userRepo,
 	}

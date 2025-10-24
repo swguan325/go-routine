@@ -27,6 +27,7 @@ func NewDashboardService(
 	accountClient external.AccountClient,
 	userRepo repo.UserRepo,
 ) DashboardService {
+	// 指向 dashboardServiceImpl 的指標
 	return &dashboardServiceImpl{
 		cardClient:    cardClient,
 		accountClient: accountClient,
