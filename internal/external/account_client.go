@@ -16,7 +16,11 @@ func NewAccountClient() AccountClient {
 }
 
 func (a *accountClientImpl) GetBalance(ctx context.Context, userID string) (float64, error) {
+	select {
 	// simulate API latency
-	time.Sleep(1200 * time.Millisecond)
-	return 88888.00, nil
+	case <-time.After(1200 * time.Millisecond):
+		return 88888.00, nil
+	case <-ctx.Done():
+		return 0.00, nil
+	}
 }

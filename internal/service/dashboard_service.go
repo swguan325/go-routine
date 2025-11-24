@@ -32,7 +32,7 @@ func NewDashboardService(
 		cardClient:    cardClient,
 		accountClient: accountClient,
 		userRepo:      userRepo,
-		timeout:       500 * time.Millisecond,
+		timeout:       1250 * time.Millisecond,
 	}
 }
 

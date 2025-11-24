@@ -2,7 +2,6 @@ package repo
 
 import (
 	"context"
-	"errors"
 	"time"
 )
 
@@ -29,11 +28,11 @@ func (r *userRepoImpl) VerifyPassword(ctx context.Context, userID, plainPwd stri
 }
 
 func (r *userRepoImpl) GetUsername(ctx context.Context, userID string) (string, error) {
+	select {
 	// simulate DB lookup
-	time.Sleep(1000 * time.Millisecond)
-
-	if userID == "user123" {
+	case <-time.After(1000 * time.Millisecond):
 		return "Bruce", nil
+	case <-ctx.Done():
+		return "", nil
 	}
-	return "", errors.New("user not found")
 }
